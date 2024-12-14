@@ -1,0 +1,139 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <style>
+        img {
+            border: 3px solid #ccc;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .button {
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="toggleButton" onclick="replaseBgColor()">Тема</button>
+
+    <div class="bigcontainer">
+        <div class="container">
+            <img src="images/back.jpg" class="button" onclick="nextOrbeforeImg(false)"/>
+            <img src="images/i1.jpg" name="1" onclick="openImage(this)"/>
+            <img src="images/i2.jpg" name="2" onclick="openImage(this)"/>
+            <img src="images/i3.jpg" name="3" onclick="openImage(this)"/>
+            <img src="images/next.jpg" class="button" onclick="nextOrbeforeImg(true)"/>
+        </div>
+
+        <div class="container">
+            <img src="images/back.jpg" class="button" onclick="a(false)" />
+            <img style="cursor:default;" src="images/i1_big.jpg" name="big" />
+            <img src="images/next.jpg" class="button" onclick="a(true)" />
+        </div>
+    </div>
+    <script>
+        function openImage(pic) {
+            document.images["big"].src = "images/i" + pic.name + "_big.jpg";
+        }
+
+        function nextOrbeforeImg(flag) {
+            if (flag) {
+                if (document.images[3].name == 9) {
+                    for (var i = 1; i <= 3; i++) {
+                        document.images[i].name = i;
+                        document.images[i].src = "images/i" + i + ".jpg";
+                    }
+                }
+                else {
+                    for (var i = 1; i <= 3; i++) {
+                        document.images[i].name = parseInt(document.images[i].name) + 3;
+                        document.images[i].src = "images/i" + document.images[i].name + ".jpg";
+                    }
+                }
+            }
+            else {
+                if (document.images[1].name == 1) {
+                    for (var i = 1; i <= 3; i++) {
+                        document.images[i].name = i + 6;
+                        document.images[i].src = "images/i" + (i + 6) + ".jpg";
+                    }
+                }
+                else {
+                    for (var i = 1; i <= 3; i++) {
+                        document.images[i].name = parseInt(document.images[i].name) - 3;
+                        document.images[i].src = "images/i" + document.images[i].name + ".jpg";
+                    }
+                }
+            }
+        }
+
+        let i = 1;
+        function a(flag) {
+            if (flag) {
+                if (i >= 9) {
+                    i = 1;
+                }
+                else {
+                    i++;
+                }
+            }
+            else {
+                if (i <= 1) {
+                    i = 9;
+                }
+                else {
+                    i--;
+                }
+            }
+            document.images["big"].src = `images / i${ i } _big.jpg`;
+        }
+
+        function replaseBgColor() {
+            const body = document.body;
+            if (document.body.style.backgroundColor === "white") {
+                document.body.style.backgroundColor = "black";
+                document.body.style.color = "white";
+            }
+            else {
+                document.body.style.backgroundColor = "white";
+                document.body.style.color = "black";
+            }
+        }
+
+    </script>
+
+    <style>
+        body {
+            transition: all ease-in-out 0.3s;
+        }
+
+        .bigcontainer {
+            padding: 30px;
+        }
+
+        .container {
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        img {
+            border: 3px solid #ccc;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            padding: 15px;
+            position: absolute;
+            left: 48%;
+        }
+    </style>
+</body>
+
+</html>
